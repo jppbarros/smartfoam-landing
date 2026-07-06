@@ -892,10 +892,14 @@
     const sceneH = sceneEl.clientHeight;
     const MOD_H = moduleEl.offsetHeight;
     const moduleTop = sceneH - 34 - MOD_H;
-    const plateGap = Math.max(moduleTop - (presser.offsetHeight + 24), 0);
-    const retractS = plateGap + MOD_H + presser.offsetHeight + 24;
+    const plateH = parseFloat(getComputedStyle(presser, '::after').height) || 24;
+    const plateBottomRest = presser.offsetHeight + plateH;
+    // at rest the plate must sit a little ABOVE the module — pull the whole press up if the rod is too long
+    const baseY = Math.min(0, (moduleTop - 14) - plateBottomRest);
+    const plateGap = moduleTop - (plateBottomRest + baseY);
+    const retractS = plateGap + MOD_H + plateBottomRest;
     stress.style.opacity = (Math.sin(tP * Math.PI) * (1 - tR2)).toFixed(3);
-    presser.style.transform = `translateX(-50%) translateY(${(tP0 * plateGap + tP * MOD_H * .88 - tR2 * retractS).toFixed(1)}px)`;
+    presser.style.transform = `translateX(-50%) translateY(${(baseY + tP0 * plateGap + tP * MOD_H * .88 - tR2 * retractS).toFixed(1)}px)`;
     presser.style.opacity = (1 - tR2).toFixed(3);
 
     // roll — starts at the left edge and travels right, swallowing the slab as it grows;
