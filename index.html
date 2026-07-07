@@ -346,6 +346,44 @@
   /* zoom-through word (like "it's wearable") */
   .zoomword{will-change:transform,opacity,filter;transform-origin:50% 60%}
 
+  /* ---------- SCROLL CAROUSEL (spins as you scroll, like the reference film 0:01–0:04) ---------- */
+  .car-track{height:260vh;position:relative}
+  .car-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+  .car-head{position:absolute;top:12vh;left:5vw;z-index:20}
+  .car-head .eyebrow{margin-bottom:.5rem}
+  .car-head h2{font-size:clamp(1.8rem,4.4vw,3.4rem);font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
+  .car-head h2 .soft{color:var(--dim)}
+  .car-stage{position:absolute;inset:0;perspective:1100px}
+  .cslide{
+    position:absolute;top:56%;left:50%;
+    height:min(54vh,540px);aspect-ratio:3/4;
+    transform:translate(-50%,-50%);
+    overflow:hidden;background:var(--panel);border:1px solid var(--line);
+    box-shadow:0 26px 60px rgba(33,29,43,.14);
+    will-change:transform,opacity,filter;
+  }
+  .cslide img,.cslide video{width:100%;height:100%;object-fit:cover;display:block}
+  /* fixed center overlay: dashed selection frame + caption + counter */
+  .car-center{
+    position:absolute;top:56%;left:50%;transform:translate(-50%,-50%);
+    height:min(54vh,540px);aspect-ratio:3/4;pointer-events:none;z-index:15;
+  }
+  .car-center .select-frame{inset:-12px}
+  .car-cap{
+    position:absolute;bottom:-40px;left:-12px;
+    font-size:.6rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-deep);
+    background:rgba(159,143,224,.14);border:1px solid rgba(134,116,212,.45);padding:.3rem .6rem;
+    white-space:nowrap;
+  }
+  .car-count{
+    position:absolute;top:-34px;right:-12px;
+    font-size:.6rem;font-weight:800;letter-spacing:.24em;color:var(--dim);
+    font-variant-numeric:tabular-nums;
+  }
+  /* static fallback (reduced motion): plain horizontal strip */
+  .car-stage.static{position:relative;inset:auto;display:flex;gap:1rem;overflow-x:auto;padding:16vh 5vw 4vh}
+  .car-stage.static .cslide{position:static;transform:none;flex:0 0 auto}
+
   /* ---------- GALLERY ---------- */
   .gallery-head{padding:9rem 5vw 0}
   .gallery{
@@ -434,6 +472,8 @@
   .th-pane{position:relative;overflow:hidden}
   .th-pane.bad{border-right:1px dashed rgba(33,29,43,.35);background:#EFECE6}
   .th-pane.good{background:#F1EEFA}
+  .th-pane.xbad{border-right:1px dashed rgba(255,255,255,.25);background:#241F30}
+  .th-pane.xgood{background:#F1EEFA}
   .sofa-svg{position:absolute;left:50%;bottom:16%;transform:translateX(-50%);width:82%;height:auto}
   .th-cap{
     position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:2;
@@ -471,7 +511,14 @@
     content:"";position:absolute;inset:0;
     background:radial-gradient(ellipse 62% 55% at 50% 50%, transparent 18%, rgba(240,239,234,.94) 80%);
   }
-  .macro .inner{position:relative;max-width:880px}
+  .macro .inner{position:relative;max-width:980px}
+  .cell3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:3.2rem;text-align:left}
+  .cellcard{background:var(--panel);border:1px solid var(--line);padding:1.6rem;box-shadow:0 14px 36px rgba(33,29,43,.07)}
+  .cellcard h3{font-size:.92rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.55rem}
+  .cellcard p{color:var(--dim);font-size:.88rem;line-height:1.6}
+  .curvebars{display:flex;gap:7px;align-items:flex-end;height:44px;margin:.9rem 0 .3rem}
+  .curvebars i{display:block;width:24px;background:var(--grad);border:1px solid rgba(134,116,212,.45)}
+  .curvelab{font-size:.55rem;font-weight:800;letter-spacing:.14em;color:var(--purple-deep);text-transform:uppercase}
   .macro .h-giant{font-size:clamp(2.4rem,6.5vw,5.4rem)}
   .macro .lead{margin-left:auto;margin-right:auto;text-align:center}
 
@@ -529,6 +576,25 @@
   .spec-row .k{color:var(--dim);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.24em;padding-top:.2rem}
   .spec-row .v{font-size:1rem;font-weight:500}
   .spec-row .v em{color:var(--purple-deep);font-style:normal;font-weight:700}
+
+  /* ---------- LAB SYSTEM STACK ---------- */
+  .stack{padding:9rem 5vw;background:var(--bg-2);border-top:1px solid var(--line)}
+  .stack-diagram{margin-top:3.6rem;max-width:840px}
+  .layer{
+    display:grid;grid-template-columns:96px 1fr;gap:1.2rem;align-items:center;
+    background:var(--panel);border:1px solid var(--line);padding:1.35rem 1.8rem;margin-bottom:8px;
+    transition:transform .25s,border-color .25s;
+  }
+  .layer:hover{transform:translateX(8px);border-color:rgba(134,116,212,.45)}
+  .layer .lnum{font-size:.58rem;font-weight:800;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
+  .layer h3{font-size:1.02rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+  .layer p{color:var(--dim);font-size:.86rem;margin-top:.25rem;line-height:1.55}
+  .layer.core{
+    border-color:rgba(134,116,212,.6);
+    background:linear-gradient(120deg,rgba(242,184,206,.14),rgba(174,203,242,.14)),var(--panel);
+  }
+  .layer.core .lnum{color:var(--purple-hot)}
+  @media(max-width:560px){.layer{grid-template-columns:1fr;gap:.4rem}}
 
   /* ---------- PRODUCTS (Powered by SmartFoam) ---------- */
   .products{padding:9rem 5vw}
@@ -677,7 +743,7 @@
       <span class="lineclip"><i>No bones.</i></span>
       <span class="lineclip"><i class="hot">All comfort.</i></span>
     </h1>
-    <p class="hero-sub">SmartFoam™ is the proprietary engineered foam that <strong>replaces the wooden frame entirely</strong>. It ships compressed in a box — and expands into a couch that holds its shape for years.</p>
+    <p class="hero-sub">SmartFoam™ is not memory foam. It's <strong>the structure itself</strong> — a proprietary foam system engineered to compress into a box, expand back into form, and hold that form for life.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="location.href='https://rovelab.ca/products/m1-sofa-sectional'">Shop the M1 Sofa</button>
       <button class="btn-ghost" onclick="location.href='#tech'">See the material</button>
@@ -736,6 +802,85 @@
     </svg>
   </h2>
   <p class="sub">One material · Structure + comfort · Designed by Rove Lab</p>
+</section>
+
+<!-- THE PROBLEM — statement + X-ray comparison (SmartFoam doc, LP sections 01–02) -->
+<section class="problem" style="padding:9rem 5vw">
+  <div class="reveal">
+    <p class="eyebrow">The problem we started with</p>
+    <h2 class="h-giant" style="font-size:clamp(2rem,4.6vw,3.9rem);text-transform:none;letter-spacing:-.02em">Most sofas are built around <span class="soft">what you can't see.</span><br>Ours is built around <span class="grad">what we invented.</span></h2>
+    <p class="lead">For a century, every sofa has shared the same secret: a hidden skeleton of wood, metal and springs. It dictates how the sofa is built, how it ships, how it ages — and what it costs you in space, money and time. <em>We started Rove Lab to remove it.</em></p>
+  </div>
+  <div class="th-box reveal" style="margin-top:3.5rem">
+    <span class="th-hud tl">Cross-section · X-ray view</span>
+    <span class="th-hud tr">Zero-Frame Construction</span>
+    <div class="th-compare">
+      <div class="th-pane xbad">
+        <svg class="sofa-svg" viewBox="0 0 200 120" aria-hidden="true">
+          <path d="M28,96 L28,50 Q28,40 38,40 L162,40 Q172,40 172,50 L172,96" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+          <g fill="none" stroke="#9FD8FF" stroke-width="1.5">
+            <rect x="36" y="48" width="128" height="6"/>
+            <rect x="36" y="82" width="128" height="6"/>
+            <line x1="44" y1="54" x2="44" y2="82"/>
+            <line x1="100" y1="54" x2="100" y2="82"/>
+            <line x1="156" y1="54" x2="156" y2="82"/>
+          </g>
+          <g fill="none" stroke="#FF9FB0" stroke-width="1.5">
+            <circle cx="72" cy="68" r="7"/><circle cx="72" cy="68" r="2.6"/>
+            <circle cx="128" cy="68" r="7"/><circle cx="128" cy="68" r="2.6"/>
+          </g>
+          <g stroke="#FFD9A0" stroke-width="2"><path d="M54,46 h5 M78,46 h5 M102,46 h5 M126,46 h5 M150,46 h5"/></g>
+          <line x1="14" y1="106" x2="186" y2="106" stroke="rgba(255,255,255,.3)"/>
+        </svg>
+        <span class="th-cap">Traditional — hidden frame</span>
+      </div>
+      <div class="th-pane xgood">
+        <svg class="sofa-svg" viewBox="0 0 200 120" aria-hidden="true">
+          <defs><pattern id="fdots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.6" fill="rgba(134,116,212,.35)"/></pattern></defs>
+          <path d="M28,96 L28,50 Q28,40 38,40 L162,40 Q172,40 172,50 L172,96 Z" fill="#DDD3F2" stroke="rgba(134,116,212,.6)" stroke-width="1.5"/>
+          <path d="M28,96 L28,50 Q28,40 38,40 L162,40 Q172,40 172,50 L172,96 Z" fill="url(#fdots)"/>
+          <line x1="14" y1="106" x2="186" y2="106" stroke="rgba(33,29,43,.28)"/>
+        </svg>
+        <span class="th-cap">SmartFoam™ — the structure itself</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCROLL CAROUSEL — spins with the scroll (reference film 0:01–0:04) -->
+<section class="car-track" id="carTrack">
+  <div class="car-sticky">
+    <div class="car-head">
+      <p class="eyebrow">So modular,</p>
+      <h2>it's every room<span class="soft">.</span></h2>
+    </div>
+    <div class="car-stage" id="carStage">
+      <!-- ============================================================
+           CAROUSEL SLIDES — PLACEHOLDERS (conteúdo real, fácil de trocar)
+           Para substituir: troque o <img> (ou use <video muted loop
+           autoplay playsinline>) e o data-caption de cada .cslide.
+           Adicione/remova slides à vontade — o motor se adapta ao total.
+           ============================================================ -->
+      <figure class="cslide" data-caption="M1 Sectional · Living room">
+        <img src="assets/products/m1-sectional-helium-cloud.webp" alt="M1 Sectional in a living room" loading="lazy">
+      </figure>
+      <figure class="cslide" data-caption="M1 Outdoor · Backyard deck">
+        <img src="assets/products/m1-outdoor-orbit-groove.webp" alt="M1 Outdoor on a deck" loading="lazy">
+      </figure>
+      <figure class="cslide" data-caption="Marshbello · Statement lounge">
+        <img src="assets/products/marshbello-carbon-black.webp" alt="Marshbello loveseat" loading="lazy">
+      </figure>
+      <figure class="cslide" data-caption="S8 Sleeper · Guest room">
+        <img src="assets/products/s8-comet-ivory.webp" alt="S8 Sleeper sofa bed" loading="lazy">
+      </figure>
+      <!-- ================== FIM DOS SLIDES ========================= -->
+    </div>
+    <div class="car-center">
+      <div class="select-frame"><i></i><i></i><i></i><i></i></div>
+      <span class="car-cap" id="carCap">M1 Sectional · Living room</span>
+      <span class="car-count" id="carCount">01 / 04</span>
+    </div>
+  </div>
 </section>
 
 <!-- GALLERY -->
@@ -812,9 +957,25 @@
 <section class="macro">
   <div class="macro-bg" data-parallax="16"></div>
   <div class="inner reveal">
-    <p class="eyebrow">Precision support · zero sag</p>
-    <h2 class="h-giant">Shape-locked <span class="grad">recovery</span> technology</h2>
-    <p class="lead">Engineered foam density does the job of a wooden frame. Tested through <em>100,000+ impact cycles</em> with BIFMA commercial-grade certification and SGS verification. Jump on it. Pile on it. It keeps its shape — and improves with time.</p>
+    <p class="eyebrow">The science · real engineering, not marketing</p>
+    <h2 class="h-giant">Engineered at the <span class="grad">cell</span></h2>
+    <p class="lead">Engineered foam density does the job of a wooden frame — tuned at the cellular level, validated by SGS lab testing. Jump on it. Pile on it. It keeps its shape.</p>
+    <div class="cell3">
+      <div class="cellcard">
+        <h3>Adaptive Cell Structure</h3>
+        <p>Open-cell architecture that breathes, responds to load, and recovers fully — sit after sit, year after year.</p>
+      </div>
+      <div class="cellcard">
+        <h3>Progressive Support Curve</h3>
+        <div class="curvebars"><i style="height:30%"></i><i style="height:62%"></i><i style="height:100%"></i></div>
+        <span class="curvelab">231 N · 337 N · 466 N</span>
+        <p>Soft at first touch, firm at full lean — SmartFoam™ raises its resistance as your weight goes deeper.</p>
+      </div>
+      <div class="cellcard">
+        <h3>Expansion Memory</h3>
+        <p>Compressed for shipping, released on arrival — it returns to its engineered shape every time, and stays there.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -844,7 +1005,7 @@
 <section class="steps-strip">
   <div class="reveal">
     <p class="eyebrow">From doorstep to sofa</p>
-    <h2 class="h-giant" style="font-size:clamp(2.2rem,5.5vw,4.6rem)">Minutes. No tools<span class="soft">.</span></h2>
+    <h2 class="h-giant" style="font-size:clamp(2.2rem,5.5vw,4.6rem)">Unbox. Expand. <span class="grad">Live.</span></h2>
   </div>
   <div class="steps reveal">
     <div class="step"><span class="num">Step 01</span><h3>It arrives in a box</h3><p>SmartFoam™ ships compressed in a compact box — free shipping, carried upstairs on your own.</p></div>
@@ -857,17 +1018,45 @@
 <!-- SPECS -->
 <section class="specs-sec" id="specs">
   <div class="reveal">
-    <p class="eyebrow">Specifications</p>
-    <h2 class="h-giant" style="font-size:clamp(2.2rem,5.5vw,4.6rem)">Built like tech<span class="soft">. Certified like it.</span></h2>
+    <p class="eyebrow">The numbers · SGS lab testing</p>
+    <h2 class="h-giant" style="font-size:clamp(2.2rem,5.5vw,4.6rem)">Tested where <span class="soft">it counts.</span></h2>
   </div>
   <div class="specs reveal">
-    <div class="spec-row"><div class="k">Structure</div><div class="v"><em>100% SmartFoam™</em> — proprietary engineered foam, no wooden frame</div></div>
-    <div class="spec-row"><div class="k">Material</div><div class="v">100% vegan, high-density foam core</div></div>
-    <div class="spec-row"><div class="k">Durability</div><div class="v"><em>100,000+ impact cycles</em> · BIFMA commercial-grade · SGS tested</div></div>
-    <div class="spec-row"><div class="k">Fabric</div><div class="v">OEKO-TEX® certified Performance Weave · spill-resistant · kid &amp; pet safe</div></div>
-    <div class="spec-row"><div class="k">Assembly</div><div class="v"><em>Zero tools</em> — hidden YKK zipper modular system</div></div>
-    <div class="spec-row"><div class="k">Delivery</div><div class="v">Compressed couch-in-a-box · free shipping (contiguous US)</div></div>
-    <div class="spec-row"><div class="k">Peace of mind</div><div class="v"><em>100-day trial</em> · lifetime warranty</div></div>
+    <div class="spec-row"><div class="k">Core density</div><div class="v"><em>34.8 kg/m³</em> — engineered density, calibrated for adaptive support · ASTM D3574-17</div></div>
+    <div class="spec-row"><div class="k">Progressive support</div><div class="v"><em>231 N → 337 N → 466 N</em> — soft to the touch, firm where it matters · ASTM D3574-17 IFD</div></div>
+    <div class="spec-row"><div class="k">Abrasion</div><div class="v"><em>70,000+ cycles</em> — contract-grade durability · ASTM D4157 Wyzenbeek</div></div>
+    <div class="spec-row"><div class="k">Impact</div><div class="v"><em>100,000+ cycles</em> — BIFMA commercial-grade certification</div></div>
+    <div class="spec-row"><div class="k">Seam strength</div><div class="v">Up to <em>1,088 N</em> — every seam engineered for the long run · ISO 13935-1</div></div>
+    <div class="spec-row"><div class="k">Air safety</div><div class="v"><em>Zero</em> detectable formaldehyde — built for the air you breathe · ISO 14184-1</div></div>
+    <div class="spec-row"><div class="k">Certifications</div><div class="v">OEKO-TEX® · SGS validated · <em>100% vegan</em> — no animal-derived materials</div></div>
+    <div class="spec-row"><div class="k">Peace of mind</div><div class="v"><em>100-day trial</em> · lifetime guarantee</div></div>
+  </div>
+</section>
+
+<!-- LAB SYSTEM — the four-layer stack (SmartFoam doc, LP section 07) -->
+<section class="stack" id="system">
+  <div class="reveal">
+    <p class="eyebrow">The Lab System™</p>
+    <h2 class="h-giant" style="font-size:clamp(2rem,4.8vw,4rem)">SmartFoam™ is the beginning<span class="soft">. The Lab System™ is what it becomes.</span></h2>
+    <p class="lead">Every Rove Lab product is built on the same architecture — one continuous innovation, from the box on your doorstep to the sofa in your living room.</p>
+  </div>
+  <div class="stack-diagram reveal">
+    <div class="layer">
+      <span class="lnum">Layer 04 · The product</span>
+      <div><h3>Lab Boneless Couch</h3><p>The expression of the system — what you take home. M1, Marshbello, S8, M1 Outdoor.</p></div>
+    </div>
+    <div class="layer">
+      <span class="lnum">Layer 03 · The experience</span>
+      <div><h3>Lab System™</h3><p>Compression Technology, tool-free assembly, modular architecture, lifetime guarantee — the end of furniture as you knew it.</p></div>
+    </div>
+    <div class="layer">
+      <span class="lnum">Layer 02 · The structure</span>
+      <div><h3>Boneless Design™</h3><p>Built without bones. Built to outlast them. Not the absence of structure — structure, rethought.</p></div>
+    </div>
+    <div class="layer core">
+      <span class="lnum">Layer 01 · The material</span>
+      <div><h3>SmartFoam™</h3><p>The foundational technology. Everything starts here — the structure you can't see, the comfort you can.</p></div>
+    </div>
   </div>
 </section>
 
@@ -876,7 +1065,7 @@
   <div class="reveal">
     <p class="eyebrow">Powered by SmartFoam™</p>
     <h2 class="h-giant" style="font-size:clamp(2.2rem,5.5vw,4.6rem)">One material<span class="soft">. A whole family.</span></h2>
-    <p class="lead">Every Rove Lab piece is built on the same boneless SmartFoam™ core — tuned for a different kind of life.</p>
+    <p class="lead">Every <em>Lab Boneless Couch</em> is built on the same SmartFoam™ core — tuned for a different kind of life.</p>
   </div>
   <div class="prod-grid">
     <div class="pcard reveal">
@@ -980,7 +1169,8 @@
       <button class="btn-primary" onclick="location.href='https://rovelab.ca/collections/modular-sofa'">Find your SmartFoam™</button>
       <button class="btn-ghost" onclick="location.href='https://rovelab.ca/'">Explore Rove Lab</button>
     </div>
-    <small>Free shipping · 100-day trial · Lifetime warranty · Tool-free setup</small>
+    <small>Built on SmartFoam™ · Engineered into the Lab System™ · Ready in a box</small>
+    <small>Free shipping · 100-day trial · Lifetime guarantee · Tool-free setup</small>
   </div>
 </section>
 
@@ -990,7 +1180,7 @@
     <span class="sep"></span>
     <span class="prod">SmartFoam<span class="tm">™</span></span>
   </div>
-  <div>© 2026 Rove Lab Inc. · The original boneless SmartFoam™ couch</div>
+  <div>© 2026 Rove Lab Inc. · Not foam. SmartFoam™ — the structure you can't see, the comfort you can.</div>
 </footer>
 
 <script>
@@ -1025,6 +1215,10 @@
   const parallaxes = [...document.querySelectorAll('[data-parallax]')];
   const reveals = [...document.querySelectorAll('.reveal')];
   const galleryEl = document.getElementById('gallery');
+  const carTrack = document.getElementById('carTrack');
+  const carSlides = [...document.querySelectorAll('#carStage .cslide')];
+  const carCap = document.getElementById('carCap');
+  const carCount = document.getElementById('carCount');
   const heroTrack = document.getElementById('heroTrack');
   const moduleEl = document.getElementById('module');
   const presser = document.getElementById('presser');
@@ -1140,6 +1334,25 @@
     ][st];
 
 
+    // scroll carousel: the track scrubs a continuous index; cards sweep sideways with a
+    // motion-blur pulse at each hand-off, like the reference film
+    if (carTrack && carSlides.length) {
+      const cp = clamp01(-carTrack.getBoundingClientRect().top / (carTrack.offsetHeight - vh));
+      const idx = cp * (carSlides.length - 1);
+      const sweep = Math.sin((idx - Math.floor(idx)) * Math.PI); // peaks mid-transition
+      carSlides.forEach((s, i) => {
+        const off = i - idx;
+        const a = Math.min(Math.abs(off), 2.5);
+        s.style.transform = `translate(-50%,-50%) translateX(${(off * 66).toFixed(2)}%) rotateY(${(-off * 14).toFixed(1)}deg) scale(${(1 - Math.min(a, 1) * .26).toFixed(3)})`;
+        s.style.opacity = (1 - Math.min(a, 1.8) * .4).toFixed(3);
+        s.style.zIndex = 10 - Math.round(a * 2);
+        s.style.filter = sweep > .05 ? `blur(${(sweep * 5 * Math.min(a + .35, 1)).toFixed(1)}px)` : '';
+      });
+      const cur = Math.round(idx);
+      carCap.textContent = carSlides[cur].dataset.caption;
+      carCount.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(carSlides.length).padStart(2, '0');
+    }
+
     // giant words slide horizontally as you scroll (like ORYZO / sustainability)
     marquees.forEach(el => {
       const r = el.getBoundingClientRect();
@@ -1194,6 +1407,8 @@
   // reveals: one-shot via IntersectionObserver — reliable regardless of scroll-event quirks
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
     reveals.forEach(el => el.classList.add('in'));
+    const stage = document.getElementById('carStage');
+    if (stage) { stage.classList.add('static'); document.querySelector('.car-center').style.display = 'none'; }
   } else {
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
