@@ -219,6 +219,10 @@
   }
   .seal small{font-size:.44rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase}
   .seal b{font-size:.95rem;font-weight:800;letter-spacing:-.01em}
+  /* official SmartFoam mark (four concentric horizontal ellipses) — nav lockup + seal badge */
+  .sfm{height:14px;width:auto;vertical-align:-2px;margin-right:.4rem;overflow:visible}
+  .sfm ellipse{fill:none;stroke:currentColor;stroke-width:10}
+  .seal .sfm{height:8px;margin:0 0 1px 0;vertical-align:0}
   /* rove lab box — drawn in the same flat style as the rest of the scene */
   .boxD{
     position:absolute;bottom:26px;left:50%;z-index:4;width:min(330px,56vw);
@@ -724,7 +728,7 @@
   <div class="logo">
     <img src="assets/rovelab-logo-white.png" alt="Rove Lab">
     <span class="sep"></span>
-    <span class="prod">SmartFoam<span class="tm">™</span></span>
+    <span class="prod"><svg class="sfm" viewBox="0 0 240 120" aria-hidden="true"><ellipse cx="120" cy="60" rx="26" ry="15"/><ellipse cx="120" cy="60" rx="50" ry="15"/><ellipse cx="120" cy="60" rx="76" ry="15"/><ellipse cx="120" cy="60" rx="104" ry="15"/></svg>SmartFoam<span class="tm">™</span></span>
   </div>
   <ul>
     <li><a href="#boneless">Boneless</a></li>
@@ -781,7 +785,7 @@
             <span class="dc">Designed in Canada</span>
           </div>
         </div>
-        <div class="seal" id="seal"><small>Powered by</small><b>SmartFoam™</b><small>Technology</small></div>
+        <div class="seal" id="seal"><svg class="sfm seal-mark" viewBox="0 0 240 120" aria-hidden="true"><ellipse cx="120" cy="60" rx="26" ry="15"/><ellipse cx="120" cy="60" rx="50" ry="15"/><ellipse cx="120" cy="60" rx="76" ry="15"/><ellipse cx="120" cy="60" rx="104" ry="15"/></svg><small>Powered by</small><b>SmartFoam™</b><small>Technology</small></div>
         <div class="ground"></div>
         <div class="hud"><span id="hudK">Wrap</span><b id="hudLoad"></b></div>
         <div class="foam-label" id="stageLabel">Front view — how your couch ships</div>
@@ -1183,9 +1187,9 @@
   <div class="logo">
     <img src="assets/rovelab-logo-white.png" alt="Rove Lab">
     <span class="sep"></span>
-    <span class="prod">SmartFoam<span class="tm">™</span></span>
+    <span class="prod"><svg class="sfm" viewBox="0 0 240 120" aria-hidden="true"><ellipse cx="120" cy="60" rx="26" ry="15"/><ellipse cx="120" cy="60" rx="50" ry="15"/><ellipse cx="120" cy="60" rx="76" ry="15"/><ellipse cx="120" cy="60" rx="104" ry="15"/></svg>SmartFoam<span class="tm">™</span></span>
   </div>
-  <div>© 2026 Rove Lab Inc. · Not foam. SmartFoam™ — the structure you can't see, the comfort you can.</div>
+  <div>© 2026 Rove Lab Inc. · The structure you can't see. The comfort you can feel.</div>
 </footer>
 
 <script>
