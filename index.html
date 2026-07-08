@@ -10,18 +10,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F0EFEA;
-    --bg-2:#E9E7E0;
-    --panel:#FBFAF7;
-    --ink:#211D2B;
-    --dim:#7E7889;
-    --purple:#9F8FE0;
+    --bg:#0D0A13;
+    --bg-2:#120E1B;
+    --panel:#171221;
+    --ink:#F4F1FA;
+    --dim:#9A93A8;
+    --purple:#A794F0;
     --purple-hot:#8674D4;
-    --purple-deep:#6E5DBF;
+    --purple-deep:#B4A3F5;
     --pink:#F2B8CE;
     --blue:#AECBF2;
-    --grad:linear-gradient(120deg,#F2B8CE 0%,#C9B4EC 48%,#AECBF2 100%);
-    --line:rgba(33,29,43,.14);
+    --grad:linear-gradient(120deg,#F7A8C4 0%,#C9B4EC 42%,#8FC3F7 100%);
+    --line:rgba(244,241,250,.13);
     font-size:16px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -40,7 +40,7 @@
   .grain{
     position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:999;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity:.05;mix-blend-mode:multiply;
+    opacity:.06;mix-blend-mode:screen;
     animation:grain 8s steps(10) infinite;
   }
   @keyframes grain{
@@ -54,7 +54,7 @@
     position:fixed;top:0;left:0;right:0;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
     padding:0 5vw;height:64px;
-    background:linear-gradient(180deg,rgba(240,239,234,.92),rgba(240,239,234,0));
+    background:linear-gradient(180deg,rgba(13,10,19,.92),rgba(13,10,19,0));
   }
   .logo{display:flex;align-items:center;gap:.9rem}
   .logo img{height:14px;width:auto;display:block}
@@ -83,7 +83,7 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:clamp(76px,11vh,100px) 5vw clamp(20px,4.5vh,50px);overflow:hidden;
   }
-  .blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.55}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.34}
   .blob.b1{width:46vw;height:46vw;background:var(--pink);top:52%;left:8%;animation:float1 14s ease-in-out infinite alternate}
   .blob.b2{width:40vw;height:40vw;background:var(--blue);top:58%;right:6%;animation:float2 17s ease-in-out infinite alternate}
   .blob.b3{width:30vw;height:30vw;background:var(--purple);top:20%;left:40%;opacity:.3;animation:float1 20s ease-in-out infinite alternate-reverse}
@@ -101,7 +101,7 @@
   h1{
     font-size:clamp(2.5rem,min(10.5vw,10vh),9rem);
     font-weight:900;letter-spacing:.01em;line-height:.95;text-transform:uppercase;
-    color:#8f8899;position:relative;
+    color:#ABA4BC;position:relative;
   }
   h1 .lineclip{display:block;overflow:hidden;padding:.04em 0}
   h1 .lineclip i{
@@ -159,15 +159,15 @@
   .presser{
     position:absolute;left:50%;top:0;transform:translateX(-50%);
     width:26px;height:clamp(44px,10vh,90px);z-index:5;will-change:transform,opacity;
-    background:linear-gradient(90deg,#241f30,#54496b 45%,#1c1727);
+    background:linear-gradient(90deg,#6f6790,#d7cfe8 45%,#635b82);
   }
   .presser::after{
     content:"ROVE LAB";position:absolute;top:100%;left:50%;transform:translateX(-50%);
     width:min(400px,58vw);height:24px;border-radius:6px;
-    background:linear-gradient(180deg,#4a4160,#282235 55%,#171225);
+    background:linear-gradient(180deg,#e2dcf0,#b3aacb 55%,#8f86a8);
     display:flex;align-items:center;justify-content:center;
-    color:rgba(255,255,255,.82);font-size:.5rem;font-weight:700;letter-spacing:.5em;text-indent:.5em;
-    box-shadow:inset 0 2px 0 rgba(255,255,255,.12), 0 10px 24px rgba(33,29,43,.3);
+    color:rgba(30,22,48,.72);font-size:.5rem;font-weight:800;letter-spacing:.5em;text-indent:.5em;
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.5), 0 10px 30px rgba(0,0,0,.5);
   }
   /* the armless module, front view */
   .module{
@@ -263,7 +263,7 @@
     background:radial-gradient(ellipse at 50% 0%, rgba(242,184,206,.95), rgba(201,180,236,.6) 45%, rgba(174,203,242,0) 78%);
     opacity:0;filter:blur(8px);will-change:opacity;
   }
-  .ground{position:absolute;bottom:34px;left:7%;right:7%;height:1px;background:rgba(33,29,43,.25);z-index:1}
+  .ground{position:absolute;bottom:34px;left:7%;right:7%;height:1px;background:rgba(244,241,250,.2);z-index:1}
   .hud{
     position:absolute;top:12px;right:14px;text-align:right;z-index:4;
     font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--purple-deep);
@@ -305,7 +305,7 @@
   .wordmark h2{
     font-size:clamp(3.5rem,13.5vw,13rem);font-weight:900;letter-spacing:.02em;
     text-transform:uppercase;line-height:1;white-space:nowrap;
-    background:linear-gradient(180deg,#3c3549 15%,#b9b3c4 100%);
+    background:linear-gradient(180deg,#C9C2DB 4%,#2A2438 116%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
     position:relative;display:inline-block;will-change:transform;
   }
@@ -402,14 +402,16 @@
   .gcard .fill{position:absolute;inset:0}
   .gcard .tag{
     position:relative;font-size:.62rem;font-weight:800;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--ink);
+    text-transform:uppercase;color:#F4F1FA;
+    background:rgba(13,10,19,.66);backdrop-filter:blur(6px);
+    padding:.55rem .7rem;border:1px solid rgba(244,241,250,.12);
   }
-  .gcard .tag small{display:block;color:var(--dim);margin-top:.35rem;letter-spacing:.14em;font-size:.6rem}
+  .gcard .tag small{display:block;color:#B7B0C6;margin-top:.35rem;letter-spacing:.14em;font-size:.6rem}
   .gcard.selected{outline:1px dashed rgba(134,116,212,.85);outline-offset:6px}
   .gcard.selected::after{
     content:"SF-M1 / SELECTED";position:absolute;top:10px;left:10px;
     font-size:.55rem;font-weight:800;letter-spacing:.2em;color:var(--purple-deep);
-    background:rgba(251,250,247,.85);border:1px solid rgba(134,116,212,.5);padding:.25rem .5rem;
+    background:rgba(13,10,19,.82);border:1px solid rgba(167,148,240,.5);padding:.25rem .5rem;
   }
   /* card fills */
   .fill-foam{
@@ -419,11 +421,11 @@
       #EDEAF6;
   }
   .fill-mag{background:#fff;display:flex;align-items:flex-start;justify-content:center;padding-top:1.2rem}
-  .fill-mag .mast{font-size:3.2rem;font-weight:900;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+  .fill-mag .mast{font-size:3.2rem;font-weight:900;letter-spacing:.04em;color:#241528;text-transform:uppercase}
   .fill-mag .cup{
     position:absolute;bottom:-8%;left:50%;transform:translateX(-50%);
     width:44%;aspect-ratio:1/1.6;border-radius:10px 10px 22px 22px;
-    background:linear-gradient(180deg,var(--ink) 0 14%,#EDEAF6 14% 100%);
+    background:linear-gradient(180deg,#241528 0 14%,#EDEAF6 14% 100%);
     box-shadow:0 -20px 60px rgba(33,29,43,.18);
   }
   .fill-thermal{
@@ -444,8 +446,8 @@
   }
   .tcap{
     position:absolute;left:8px;z-index:2;
-    font-size:.48rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
-    background:rgba(251,250,247,.85);padding:.2rem .45rem;border:1px solid var(--line);
+    font-size:.48rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#EDE9F8;
+    background:rgba(13,10,19,.72);padding:.2rem .45rem;border:1px solid rgba(244,241,250,.16);
   }
   .tcap.t{top:8px}
   .tcap.b{top:calc(50% + 8px)}
@@ -466,7 +468,7 @@
     overflow:hidden;
   }
   .thermal .txt .lead{max-width:440px}
-  .th-box{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid rgba(134,116,212,.35);background:#fff}
+  .th-box{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid rgba(134,116,212,.35);background:var(--panel)}
   /* side-by-side endurance comparison: sagging traditional foam vs like-new SmartFoam */
   .th-compare{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr}
   .th-pane{position:relative;overflow:hidden}
@@ -478,8 +480,8 @@
   .th-cap{
     position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:2;
     width:max-content;max-width:92%;text-align:center;
-    font-size:.53rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
-    background:rgba(251,250,247,.85);padding:.3rem .55rem;border:1px solid var(--line);
+    font-size:.53rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#EDE9F8;
+    background:rgba(13,10,19,.72);padding:.3rem .55rem;border:1px solid rgba(244,241,250,.16);
   }
   .th-box::after{
     content:"";position:absolute;inset:0;
@@ -488,7 +490,7 @@
   }
   .th-hud{
     position:absolute;z-index:2;font-size:.6rem;font-weight:800;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--purple-deep);background:rgba(251,250,247,.75);padding:.35rem .6rem;
+    text-transform:uppercase;color:#CFC1F5;background:rgba(13,10,19,.72);padding:.35rem .6rem;
     border:1px solid rgba(134,116,212,.4);
   }
   .th-hud.tl{top:12px;left:12px}
@@ -504,12 +506,12 @@
     position:absolute;inset:-14% 0;
     background:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.055' numOctaves='5' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.72  0 0 0 0 0.66  0 0 0 0 0.88  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='700' height='700' filter='url(%23m)'/%3E%3C/svg%3E"),
-      #E7E4F0;
+      #17122a;
     will-change:transform;
   }
   .macro-bg::after{
     content:"";position:absolute;inset:0;
-    background:radial-gradient(ellipse 62% 55% at 50% 50%, transparent 18%, rgba(240,239,234,.94) 80%);
+    background:radial-gradient(ellipse 62% 55% at 50% 50%, transparent 18%, rgba(13,10,19,.94) 80%);
   }
   .macro .inner{position:relative;max-width:980px}
   .cell3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:3.2rem;text-align:left}
@@ -556,7 +558,7 @@
   .steps-strip{padding:9rem 5vw}
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:4rem}
   .step{background:var(--panel);padding:2.6rem 2rem;position:relative;transition:background .3s}
-  .step:hover{background:#F4F2FB}
+  .step:hover{background:#1E1730}
   .step .num{
     font-size:.62rem;font-weight:800;letter-spacing:.3em;color:var(--purple-hot);
     text-transform:uppercase;display:block;margin-bottom:3.5rem;
@@ -572,7 +574,7 @@
     padding:1.5rem 2.2rem;border-bottom:1px solid var(--line);gap:1rem;transition:background .25s;
   }
   .spec-row:last-child{border-bottom:none}
-  .spec-row:hover{background:#F4F2FB}
+  .spec-row:hover{background:#1E1730}
   .spec-row .k{color:var(--dim);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.24em;padding-top:.2rem}
   .spec-row .v{font-size:1rem;font-weight:500}
   .spec-row .v em{color:var(--purple-deep);font-style:normal;font-weight:700}
@@ -717,7 +719,7 @@
 
 <nav>
   <div class="logo">
-    <img src="assets/rovelab-logo-black.png" alt="Rove Lab">
+    <img src="assets/rovelab-logo-white.png" alt="Rove Lab">
     <span class="sep"></span>
     <span class="prod">SmartFoam<span class="tm">™</span></span>
   </div>
@@ -738,7 +740,7 @@
     <div class="blob b2"></div>
     <div class="blob b3"></div>
     <span class="model-tag">SF-M1 · ENGINEERED FOAM</span>
-    <p class="hero-eyebrow"><img src="assets/rovelab-logo-black.png" alt="Rove Lab" class="eb-logo"> presents · <em>The original boneless couch</em></p>
+    <p class="hero-eyebrow"><img src="assets/rovelab-logo-white.png" alt="Rove Lab" class="eb-logo"> presents · <em>The original boneless couch</em></p>
     <h1>
       <span class="lineclip"><i>No bones.</i></span>
       <span class="lineclip"><i class="hot">All comfort.</i></span>
@@ -1176,7 +1178,7 @@
 
 <footer>
   <div class="logo">
-    <img src="assets/rovelab-logo-black.png" alt="Rove Lab">
+    <img src="assets/rovelab-logo-white.png" alt="Rove Lab">
     <span class="sep"></span>
     <span class="prod">SmartFoam<span class="tm">™</span></span>
   </div>
